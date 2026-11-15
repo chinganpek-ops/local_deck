@@ -8,14 +8,14 @@ def index(request):
     """Главная страница: 5 последних опубликованных публикаций."""
     post_list = Post.objects.published()[:POSTS_ON_MAIN]
     context = {'post_list': post_list}
-    return render(request, 'blog/index.html', context)
+    return render(request, 'journal/index.html', context)
 
 
 def post_detail(request, id):
     """Страница отдельной публикации."""
     post = get_object_or_404(Post.objects.published(), id=id)
     context = {'post': post}
-    return render(request, 'blog/detail.html', context)
+    return render(request, 'journal/detail.html', context)
 
 
 def category_posts(request, category_slug):
@@ -30,4 +30,4 @@ def category_posts(request, category_slug):
         'post_list': post_list,
         'category': category,
     }
-    return render(request, 'blog/category.html', context)
+    return render(request, 'journal/category.html', context)
